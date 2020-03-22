@@ -1,0 +1,29 @@
+{
+  "name": "addeos/anonymize",
+  "description": "Anonymization command",
+  "type": "magento2-module",
+  "version": "1.0.0",
+  "license": [
+    "OSL-3.0"
+  ],
+  "require": {
+    "php": "~7.1.3||~7.2.0||~7.3.0"
+  },
+  "authors": [
+    {
+      "name": "Didier Berlioz",
+      "email": "berliozd@gmail.com",
+      "homepage": "https://www.berliozd.com/",
+      "role": "Developer"
+    }
+  ],
+  "autoload": {
+    "files": [
+      "registration.php"
+    ],
+    "psr-4": {
+      "Addeos\\Anonymize\\": ""
+    }
+  }
+}
+
