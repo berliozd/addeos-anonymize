@@ -19,36 +19,13 @@ use Symfony\Component\Console\Question\Question;
 
 class Anonymize extends Command
 {
-    const CLI_OPTION_FORCE_MODE = 'force';
+    private const CLI_OPTION_FORCE_MODE = 'force';
+    private State $state;
+    private array $disAllowedModes = [State::MODE_PRODUCTION];
+    private AnonymizeHelper $anonymizeHelper;
 
-    /**
-     * @var State
-     */
-    private $state;
-    /**
-     * @var array
-     */
-    private $disAllowedModes = [State::MODE_PRODUCTION];
-    /**
-     * @var OutputInterface
-     */
-    private $output;
-    /**
-     * @var AnonymizeHelper
-     */
-    private $anonymizeHelper;
-
-    /**
-     * Anonymize constructor.
-     * @param State $state
-     * @param AnonymizeHelper $anonymizeHelper
-     * @param null $name
-     */
-    public function __construct(
-        State $state,
-        AnonymizeHelper $anonymizeHelper,
-        $name = null
-    ) {
+    public function __construct(State $state, AnonymizeHelper $anonymizeHelper, $name = null)
+    {
         parent::__construct($name);
         $this->state = $state;
         $this->anonymizeHelper = $anonymizeHelper;
@@ -91,21 +68,21 @@ class Anonymize extends Command
     /**
      * @param InputInterface $input
      * @param OutputInterface $output
-     * @return int|void|null
+     * @return int
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $this->anonymizeHelper->setOutput($output);
-        $this->output = $output;
         $isDisAllowedMode = in_array($this->state->getMode(), $this->disAllowedModes);
         $isForceMode = $input->getOption(self::CLI_OPTION_FORCE_MODE) === 'Yes';
         if ($isDisAllowedMode && !$isForceMode) {
             $this->anonymizeHelper->log('Anonymization is not possible in ' . $this->state->getMode() . ' mode.');
-            return;
+            return Command::INVALID;
         }
         if ($isForceMode) {
             $this->anonymizeHelper->log('Executing in force mode');
         }
         $this->anonymizeHelper->anonymize();
+        return Command::SUCCESS;
     }
 }
