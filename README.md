@@ -1,31 +1,97 @@
-# addeos-anonymize
+# Addeos Anonymize Extension User Guide
 
 A magento 2 module that let you anonymize the private data that are present in your MySql database using a specific CLI
 command.
 
-More information here : https://www.addeos.com/magento-2-database-anonymization-module
+# Table of Contents
+1. [Introduction ](#introduction)
+2. [Installation ](#installation)
+3. [Enabling the extension ](#enabling-the-extension)
+4. [CLI command ](#cli-command)
+5. [List of tables anonymized ](#list-of-tables-anonymized)
+6. [Running in developer mode ](#running-in-developer-mode)
+7. [Running in Force mode (production) ](#running-in-force-mode-production)
+8. [Troubleshooting ](#troubleshooting)
+9. [Support and contact ](#support-and-contact)
 
-## Installation
+# Introduction
+The Addeos Anonymize Extension is designed to help Magento store owners comply with GDPR regulations by providing a simple and efficient way to anonymize sensitive customer data on local environments. This extension ensures that personal information in specified database tables is anonymized, making it suitable for development and testing environments.
 
-Simply execute the command below to install the module code in you magento application vendor folder.
+# Installation
+To install the Addeos Anonymize Extension, follow these steps:
 
-``composer require addeos/anonymize``
+```bash
+composer require addeos/anonymize
+php bin/magento module:enable Addeos_Anonymize
+php bin/magento setup:upgrade
+```
 
-Then execute the following magento command to enable the module.
+# Enabling the Extension
+After installation, enable the extension using the following command:
 
-``bin/magento module:enable Addeos_Anonymize``
+```bash
+php bin/magento module:enable Addeos_Anonymize
+php bin/magento setup:upgrade
+```
 
-## User guide
+# CLI Command
+Once the extension is enabled, a new CLI command becomes available:
 
-Once installed and enabled, you can simply execute the new command:
+```bash
+php bin/magento addeos:anonymize
+```
+Use this command to initiate the anonymization process.
 
-```bin/magento addeos:anonymize```
+# List of Tables Anonymized
+The Addeos Anonymize Extension anonymizes data in the following database tables:
 
-If magento is installed in developer mode, the command will run smoothly.
+- customer_entity
+- customer_address_entity 
+- customer_grid_flat 
+- email_contact 
+- newsletter_subscriber 
+- paradoxlabs_stored_card 
+- quote 
+- quote_address 
+- sales_creditmemo_grid 
+- sales_invoice_grid 
+- sales_order 
+- sales_order_address 
+- sales_order_grid 
+- sales_shipment_grid 
+- stripe_customers
 
-If magento is installed in production mode, you will need to pass and additional parameter -f and confirm that you
-want to run it.
+Ensure that you have a backup of your data before running the anonymization process.
 
-```bin/magento addeos:anonymize -f```
+# Running in Developer Mode
+The extension can only be executed on a Magento installation in developer mode. Ensure that your Magento environment is set to developer mode before running the anonymization command.
 
-And that's all you need to know.
+Logs are available in a log file named addeos-anonymize.log.
+
+# Running in Force Mode (Production)
+
+In a production environment, you can run the extension in force mode by adding the -f or --force parameter to the command:
+
+```bash
+php bin/magento addeos:anonymize -f
+```
+Note: Exercise caution when using force mode on a production Magento installation, and always have a backup of your data.
+
+# Troubleshooting
+If you encounter any issues during installation or usage, consider the following troubleshooting steps:
+
+- Check the Magento logs for error messages. 
+- Ensure that the extension is properly enabled using the `php bin/magento module:status command. 
+- Verify that the CLI command syntax is correct.
+
+# Support and Contact
+For any further assistance, reach out to our support team at didier@addeos.com. We are here to help you with any questions or concerns regarding the Addeos Anonymize Extension.
+
+Thank you for choosing Addeos to enhance your Magento experience!
+
+
+
+
+
+
+
