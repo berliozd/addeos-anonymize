@@ -7,12 +7,13 @@ command.
 1. [Introduction ](#introduction)
 2. [Installation ](#installation)
 3. [Enabling the extension ](#enabling-the-extension)
-4. [CLI command ](#cli-command)
-5. [List of tables anonymized ](#list-of-tables-anonymized)
-6. [Running in developer mode ](#running-in-developer-mode)
-7. [Running in Force mode (production) ](#running-in-force-mode-production)
-8. [Troubleshooting ](#troubleshooting)
-9. [Support and contact ](#support-and-contact)
+4. [Configuration ](#configuration)
+5. [CLI command ](#cli-command)
+6. [List of tables anonymized ](#list-of-tables-anonymized)
+7. [Running in developer mode ](#running-in-developer-mode)
+8. [Running in Force mode (production) ](#running-in-force-mode-production)
+9. [Troubleshooting ](#troubleshooting)
+10. [Support and contact ](#support-and-contact)
 
 # Introduction
 The Addeos Anonymize Extension is designed to help Magento store owners comply with GDPR regulations by providing a simple and efficient way to anonymize sensitive customer data on local environments. This extension ensures that personal information in specified database tables is anonymized, making it suitable for development and testing environments.
@@ -33,6 +34,9 @@ After installation, enable the extension using the following command:
 php bin/magento module:enable Addeos_Anonymize
 php bin/magento setup:upgrade
 ```
+
+# Configuration
+The extension doesn't require any specific onfigurations.
 
 # CLI Command
 Once the extension is enabled, a new CLI command becomes available:
