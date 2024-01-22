@@ -2,8 +2,8 @@
 <!--
 /**
  * @license http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
- * @author didier <berliozd@gmail.com>
- * @copyright Copyright (c) 2020 Addeos (http://www.addeos.com)
+ * @author didier <didier@addeos.com>
+ * @copyright Copyright (c) 2024 Addeos (http://www.addeos.com)
  */
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -12,6 +12,7 @@
         <arguments>
             <argument name="commands" xsi:type="array">
                 <item name="addeos_anonymize_command_anonymize" xsi:type="object">Addeos\Anonymize\Command\Anonymize</item>
+                <item name="addeos_anonymize_command_info" xsi:type="object">Addeos\Anonymize\Command\Info</item>
             </argument>
         </arguments>
     </type>

@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @license http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ * @author didier <didier@addeos.com>
+ * @copyright Copyright (c) 2024 Addeos (http://www.addeos.com)
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <addeos_anonymize>
+            <general>
+                <tables>
+                    customer_entity,customer_address_entity,customer_grid_flat,email_contact,newsletter_subscriber,paradoxlabs_stored_card,quote,quote_address,sales_creditmemo_grid,sales_invoice_grid,sales_order,sales_order_address,sales_order_grid,sales_shipment_grid,stripe_customers
+                </tables>
+                <generic_string_columns>
+                    name,firstname,lastname,city,shipping_full,billing_full,billing_firstname,billing_lastname,billing_street,billing_city,billing_company,customer_firstname,customer_lastname,company,street,billing_name,billing_address,shipping_address,customer_name
+                </generic_string_columns>
+                <phone_columns>telephone,phone,fax,billing_telephone</phone_columns>
+                <password_columns>password_hash</password_columns>
+                <email_columns>email,subscriber_email,customer_email</email_columns>
+                <ip_columns>remote_ip</ip_columns>
+            </general>
+        </addeos_anonymize>
+    </default>
+</config>
