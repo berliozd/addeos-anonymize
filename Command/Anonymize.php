@@ -69,12 +69,32 @@ class Anonymize extends Command
         $isForceMode = $input->getOption(self::CLI_OPTION_FORCE_MODE) === 'Yes';
         if ($isDisAllowedMode && !$isForceMode) {
             $this->anonymizeHelper->log('Anonymization is not possible in ' . $this->state->getMode() . ' mode.');
-            return Command::INVALID;
+            return $this->getInvalidConstant();
         }
         if ($isForceMode) {
             $this->anonymizeHelper->log('Executing in force mode');
         }
         $this->anonymizeHelper->anonymize();
-        return Command::SUCCESS;
+        return $this->getSuccessConstant();
+    }
+
+    private function getSuccessConstant(): int
+    {
+        try {
+            $constant = new \ReflectionClassConstant(Command::class, 'SUCCESS');
+            return $constant->getValue();
+        } catch (\Exception $e) {
+            return 0;
+        }
+    }
+
+    private function getInvalidConstant(): int
+    {
+        try {
+            $constant = new \ReflectionClassConstant(Command::class, 'INVALID');
+            return $constant->getValue();
+        } catch (\Exception $e) {
+            return 2;
+        }
     }
 }

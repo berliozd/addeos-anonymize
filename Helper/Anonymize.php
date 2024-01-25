@@ -103,7 +103,7 @@ class Anonymize
         return $this->config->getTables();
     }
 
-    public function getPrimaryKeyColumnName(mixed $table): string
+    public function getPrimaryKeyColumnName(string $table): string
     {
         $query = sprintf('SHOW KEYS FROM %s WHERE Key_name = \'PRIMARY\';', $table);
         $primaryColumnResults = $this->connection->fetchRow($query);

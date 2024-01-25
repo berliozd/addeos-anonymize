@@ -33,7 +33,7 @@ class Info extends Command
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $this->showTables($output);
-        return Command::SUCCESS;
+        return $this->getSuccessConstant();
     }
 
     private function showTables(OutputInterface $output): void
@@ -65,5 +65,15 @@ class Info extends Command
             $table->addRow([$item]);
         }
         $table->render();
+    }
+
+    private function getSuccessConstant(): int
+    {
+        try {
+            $constant = new \ReflectionClassConstant(Command::class, 'SUCCESS');
+            return $constant->getValue();
+        } catch (\Exception $e) {
+            return 0;
+        }
     }
 }
