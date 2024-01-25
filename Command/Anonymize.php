@@ -1,8 +1,8 @@
 <?php
 /**
  * @license http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
- * @author didier <berliozd@gmail.com>
- * @copyright Copyright (c) 2020 Addeos (http://www.addeos.com)
+ * @author didier <didier@addeos.com>
+ * @copyright Copyright (c) 2024 Addeos (http://www.addeos.com)
  */
 
 namespace Addeos\Anonymize\Command;
@@ -31,14 +31,14 @@ class Anonymize extends Command
         $this->anonymizeHelper = $anonymizeHelper;
     }
 
-    protected function configure()
+    protected function configure(): void
     {
-        $this->setName('addeos:anonymize')
+        $this->setName('addeos:anonymize:run')
             ->setDescription('Anonymize the DB.')
             ->addOption(self::CLI_OPTION_FORCE_MODE, 'f', InputOption::VALUE_OPTIONAL, 'Force mode', false);
     }
 
-    protected function interact(InputInterface $input, OutputInterface $output)
+    protected function interact(InputInterface $input, OutputInterface $output): void
     {
         /** @var QuestionHelper $questionHelper */
         $questionHelper = $this->getHelper('question');
@@ -53,36 +53,48 @@ class Anonymize extends Command
         }
     }
 
-    /**
-     * @return Question
-     */
     private function getForcingQuestion(): Question
     {
         return new ChoiceQuestion(
-            '<question>Are you sure you want execute anonymization in force mode (No)?</question> ',
+            '<question>Are you sure you want to execute anonymization in force mode (No)?</question> ',
             ['No', 'Yes'],
             'No'
         );
     }
 
-    /**
-     * @param InputInterface $input
-     * @param OutputInterface $output
-     * @return int
-     */
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $this->anonymizeHelper->setOutput($output);
         $isDisAllowedMode = in_array($this->state->getMode(), $this->disAllowedModes);
         $isForceMode = $input->getOption(self::CLI_OPTION_FORCE_MODE) === 'Yes';
         if ($isDisAllowedMode && !$isForceMode) {
             $this->anonymizeHelper->log('Anonymization is not possible in ' . $this->state->getMode() . ' mode.');
-            return Command::INVALID;
+            return $this->getInvalidConstant();
         }
         if ($isForceMode) {
             $this->anonymizeHelper->log('Executing in force mode');
         }
         $this->anonymizeHelper->anonymize();
-        return Command::SUCCESS;
+        return $this->getSuccessConstant();
+    }
+
+    private function getSuccessConstant(): int
+    {
+        try {
+            $constant = new \ReflectionClassConstant(Command::class, 'SUCCESS');
+            return $constant->getValue();
+        } catch (\Exception $e) {
+            return 0;
+        }
+    }
+
+    private function getInvalidConstant(): int
+    {
+        try {
+            $constant = new \ReflectionClassConstant(Command::class, 'INVALID');
+            return $constant->getValue();
+        } catch (\Exception $e) {
+            return 2;
+        }
     }
 }

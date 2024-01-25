@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @license http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ * @author didier <didier@addeos.com>
+ * @copyright Copyright (c) 2024 Addeos (http://www.addeos.com)
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="addeos" translate="label">
+            <label>Addeos</label>
+        </tab>
+        <section id="addeos_anonymize" translate="label" sortOrder="10" showInDefault="1">
+            <class>separator-top</class>
+            <label>Anonymize</label>
+            <tab>addeos</tab>
+            <resource>Addeos_Anonymize::general</resource>
+            <group id="general" translate="label" type="text" sortOrder="50" showInDefault="1">
+                <label>General</label>
+                <field id="tables" translate="label" type="textarea" sortOrder="10" showInDefault="1" canRestore="1">
+                    <label>Tables</label>
+                    <comment>
+                        <![CDATA[List of tables (',' separated values) that will be anonymized.]]>
+                    </comment>
+                </field>
+                <field id="generic_string_columns" translate="label" type="textarea" sortOrder="20" showInDefault="1"
+                       canRestore="1">
+                    <label>Generic string columns</label>
+                    <comment>
+                        <![CDATA[The contents of these columns (',' separated) will be treated as wildcard strings.]]>
+                    </comment>
+                </field>
+                <field id="phone_columns" translate="label" type="textarea" sortOrder="30" showInDefault="1"
+                       canRestore="1">
+                    <label>Phone columns</label>
+                    <comment>
+                        <![CDATA[The contents of these columns (',' separated) will be treated as telephone numbers.]]>
+                    </comment>
+                </field>
+                <field id="password_columns" translate="label" type="textarea" sortOrder="40" showInDefault="1"
+                       canRestore="1">
+                    <label>Password columns</label>
+                    <comment>
+                        <![CDATA[The contents of these columns (',' separated) will be treated as passwords.]]>
+                    </comment>
+                </field>
+                <field id="email_columns" translate="label" type="textarea" sortOrder="50" showInDefault="1"
+                       canRestore="1">
+                    <label>Email columns</label>
+                    <comment>
+                        <![CDATA[The content of these columns (',' separated) will be treated as emails.]]>
+                    </comment>
+                </field>
+                <field id="ip_columns" translate="label" type="textarea" sortOrder="60" showInDefault="1"
+                       canRestore="1">
+                    <label>IP columns</label>
+                    <comment>
+                        <![CDATA[The contents of these columns (',' separated) will be treated as ip addresses.]]>
+                    </comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>
