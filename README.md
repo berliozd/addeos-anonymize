@@ -36,7 +36,34 @@ php bin/magento setup:upgrade
 ```
 
 # Configuration
-The extension doesn't require any specific onfigurations.
+
+A new configuration section `Addeos` > `Anonymize` is visible in BO.
+
+In that section, you will find a few fields that will allow you to define which tables and which tables will be anonymized.
+
+Some default values are set.
+
+![image](Doc/images/section.png)
+
+The tables that will be anonymized can be configured.
+
+![image](Doc/images/tables.png)
+
+All different types of columns that will be anonymized can be configured.
+
+The generic strings type columns :
+![image](Doc/images/generic.png)
+The phone columns :
+![image](Doc/images/phones.png)
+The password type columns :
+![image](Doc/images/passwords.png)
+The email type columns :
+![image](Doc/images/emails.png)
+The IP type columns :
+![image](Doc/images/ips.png)
+
+
+
 
 # CLI Command
 Once the extension is enabled, a new CLI command becomes available:
